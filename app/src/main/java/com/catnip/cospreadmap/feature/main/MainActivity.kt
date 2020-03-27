@@ -1,7 +1,8 @@
-package com.catnip.cospreadmap
+package com.catnip.cospreadmap.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.catnip.cospreadmap.R
 
 class MainActivity : AppCompatActivity() {
 
