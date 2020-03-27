@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def credentialsPropertiesFile = rootProject.file("credentials.properties")
+def credentialsProperties = new Properties()
+credentialsProperties.load(new FileInputStream(credentialsPropertiesFile))
+
 android {
     compileSdkVersion app.compileSdk
     buildToolsVersion app.buildToolsVersion
@@ -26,12 +30,12 @@ android {
         production {
             dimension = 'default'
             buildConfigField("String", "BASE_URL", "\"https://api.kawalcorona.com/\"")
-
+            buildConfigField("String", "MAPBOX_KEY", credentialsProperties['MAPBOX_KEY'])
         }
         dev {
             dimension = 'default'
             buildConfigField("String", "BASE_URL", "\"https://api.kawalcorona.com/\"")
-
+            buildConfigField("String", "MAPBOX_KEY", credentialsProperties['MAPBOX_KEY'])
         }
     }
     compileOptions {
