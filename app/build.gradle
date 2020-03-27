@@ -75,6 +75,7 @@ dependencies {
     implementation deps.retrofit.retrofitOkhttpLogging
     implementation deps.coil.coil
     implementation deps.mapbox.maps
+    implementation deps.chart.mpandroidchart
     implementation deps.android_test.junit
     androidTestImplementation deps.android_test.androidJunit
     androidTestImplementation deps.android_test.espressoCore
