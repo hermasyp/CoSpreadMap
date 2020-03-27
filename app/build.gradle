@@ -3,17 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
+    compileSdkVersion app.compileSdk
+    buildToolsVersion app.buildToolsVersion
     defaultConfig {
-        applicationId "com.catnip.cospreadmap"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId app.appId
+        minSdkVersion app.minSdk
+        targetSdkVersion app.targetSdk
+        versionCode app.appVersionCode
+        versionName app.appVersionName
+        testInstrumentationRunner app.testRunner
     }
 
     buildTypes {
@@ -22,16 +20,62 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions 'default'
+
+    productFlavors {
+        production {
+            dimension = 'default'
+            buildConfigField("String", "BASE_URL", "\"https://api.kawalcorona.com/\"")
+
+        }
+        dev {
+            dimension = 'default'
+            buildConfigField("String", "BASE_URL", "\"https://api.kawalcorona.com/\"")
+
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    androidExtensions {
+        experimental = true
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation deps.kotlin.stdlib
+    implementation deps.support_lib.material
+    implementation deps.support_lib.appcompat
+    implementation deps.support_lib.legacysupport
+    implementation deps.support_lib.constraintlayout
+    implementation deps.support_lib.recyclerview
+    implementation deps.support_lib.cardview
+    implementation deps.support_lib.lifecycleExt
+    implementation deps.scalable.ssp
+    implementation deps.scalable.sdp
+    implementation deps.navigation.fragment
+    implementation deps.navigation.ui
+    implementation deps.navigation.fragmentKtx
+    implementation deps.navigation.uiKtx
+    implementation deps.rxjava.core
+    implementation deps.rxjava.rxAndroid
+    implementation deps.koin.koin
+    implementation deps.koin.koinViewModel
+    implementation deps.koin.koinScope
+    implementation deps.gson.gson
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.retrofitGson
+    implementation deps.retrofit.retrofitRx
+    implementation deps.retrofit.retrofitOkhttpLogging
+    implementation deps.coil.coil
+    implementation deps.mapbox.maps
+    implementation deps.android_test.junit
+    androidTestImplementation deps.android_test.androidJunit
+    androidTestImplementation deps.android_test.espressoCore
 }
