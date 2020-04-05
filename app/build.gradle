@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 def credentialsPropertiesFile = rootProject.file("credentials.properties")
 def credentialsProperties = new Properties()
@@ -77,10 +79,14 @@ dependencies {
     implementation deps.retrofit.retrofitGson
     implementation deps.retrofit.retrofitRx
     implementation deps.retrofit.retrofitOkhttpLogging
+    implementation deps.room.core
+    implementation deps.room.roomRx
     implementation deps.coil.coil
     implementation deps.mapbox.maps
     implementation deps.chart.mpandroidchart
     implementation deps.android_test.junit
     androidTestImplementation deps.android_test.androidJunit
     androidTestImplementation deps.android_test.espressoCore
+    kapt deps.room.roomKapt
+
 }
