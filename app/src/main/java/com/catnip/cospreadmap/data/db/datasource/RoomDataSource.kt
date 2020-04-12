@@ -10,6 +10,6 @@ Github : https://github.com/hermasyp
  **/
 interface RoomDataSource<T> {
     fun get(): Observable<T>
-    fun store(data: T): Completable
-    fun clear(): Completable
+    fun store(data: T)
+    fun clear()
 }

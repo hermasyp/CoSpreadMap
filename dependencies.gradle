@@ -8,7 +8,7 @@ app.minSdk = 21
 app.targetSdk = 29
 app.appVersionCode = 1
 app.appVersionName = "1.0"
-app.appId = "com.catnip.avengersapp"
+app.appId = "com.catnip.cospreadmap"
 app.testRunner = "androidx.test.runner.AndroidJUnitRunner"
 ext.app = app
 

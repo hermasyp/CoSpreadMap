@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_local_spread"
+        android:icon="@drawable/ic_location_local"
+        android:title="@string/title_menu_local_spread" />
+
+    <item
+        android:id="@+id/navigation_global_spread"
+        android:icon="@drawable/ic_location_global"
+        android:title="@string/title_menu_global_spread" />
+
+</menu>

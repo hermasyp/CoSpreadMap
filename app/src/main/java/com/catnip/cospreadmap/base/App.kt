@@ -1,10 +1,7 @@
 package com.catnip.cospreadmap.base
 
 import android.app.Application
-import com.catnip.cospreadmap.di.databaseModule
-import com.catnip.cospreadmap.di.networkModule
-import com.catnip.cospreadmap.di.repositories
-import com.catnip.cospreadmap.di.viewModels
+import com.catnip.cospreadmap.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -17,7 +14,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(listOf(networkModule,databaseModule, viewModels, repositories))
+            modules(listOf(networkModule,databaseModule, dataSource,viewModels, repositories))
         }
     }
 

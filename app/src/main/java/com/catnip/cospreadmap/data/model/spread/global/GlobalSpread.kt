@@ -5,29 +5,29 @@ import com.google.gson.annotations.SerializedName
 data class GlobalSpread(
 
     @field:SerializedName("OBJECTID")
-    val id: Int? = null,
+    val id: String? = null,
 
     @field:SerializedName("Recovered")
-    val recovered: Int? = null,
+    val recovered: String? = null,
 
     @field:SerializedName("Country_Region")
     val countryRegion: String? = null,
 
     @field:SerializedName("Active")
-    val active: Int? = null,
+    val active: String? = null,
 
     @field:SerializedName("Last_Update")
-    val lastUpdate: Long? = null,
+    val lastUpdate: String? = null,
 
     @field:SerializedName("Deaths")
-    val deaths: Int? = null,
+    val deaths: String? = null,
 
     @field:SerializedName("Confirmed")
-    val confirmed: Int? = null,
+    val confirmed: String? = null,
 
     @field:SerializedName("Lat")
-    val lat: Int? = null,
+    val lat: String? = null,
 
     @field:SerializedName("Long_")
-    val long: Int? = null
+    val long: String? = null
 )

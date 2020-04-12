@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_local_spread">
+
+    <fragment
+        android:id="@+id/navigation_local_spread"
+        android:name="com.catnip.cospreadmap.feature.main.localspread.LocalSpreadFragment"
+        android:label="@string/title_menu_local_spread"
+        tools:layout="@layout/fragment_local" />
+
+    <fragment
+        android:id="@+id/navigation_global_spread"
+        android:name="com.catnip.cospreadmap.feature.main.globalspread.GlobalSpreadFragment"
+        android:label="@string/title_menu_global_spread"
+        tools:layout="@layout/fragment_global" />
+
+</navigation>

@@ -24,7 +24,11 @@ class LocalSpreadNetworkDataSource(private val client: RetrofitApi) :
                     Pair<List<LocalSpreadResponse>, List<Province>>> { t1, t2 ->
                 Pair(t1, t2)
             }
-        ) //filtering and search local spread with their province data
+        )
+            .doOnError {
+                it.printStackTrace()
+            }
+            //filtering and search local spread with their province data
             .flatMap { pair ->
                 Observable.fromIterable(pair.first)
                     .flatMap { spread ->
@@ -36,12 +40,16 @@ class LocalSpreadNetworkDataSource(private val client: RetrofitApi) :
                             })
                     }
             }.toList().toObservable()
+            .doOnError {
+                it.printStackTrace()
+            }
             //zip with local spread count
             .flatMap {
                 Observable.zip(Observable.just(it),
                     client.getIndonesiaCount(),
-                    BiFunction<List<LocalSpreadWrapper>, IndonesiaCount, LocalDataWrapper> { t1, t2 ->
-                        LocalDataWrapper(t1, t2)
+                    BiFunction<List<LocalSpreadWrapper>, List<IndonesiaCount>, LocalDataWrapper> { t1, t2 ->
+                        LocalDataWrapper(t1, t2[0])
                     })
             }
+
 }

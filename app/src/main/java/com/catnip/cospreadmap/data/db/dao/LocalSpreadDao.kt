@@ -16,11 +16,11 @@ Github : https://github.com/hermasyp
 @Dao
 interface LocalSpreadDao {
     @Query("SELECT * FROM local_spread_data ORDER BY ID DESC LIMIT 1")
-    fun getLocalSpreadData(): Observable<LocalSpreadEntity>
+    fun getLocalSpreadData(): Single<LocalSpreadEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLocalSpreadData(data: LocalSpreadEntity): Completable
+    fun insertLocalSpreadData(data: LocalSpreadEntity)
 
     @Query("DELETE FROM local_spread_data")
-    fun deleteAllLocalSpreadData(): Completable
+    fun deleteAllLocalSpreadData()
 }
