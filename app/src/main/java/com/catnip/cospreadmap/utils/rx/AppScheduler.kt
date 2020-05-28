@@ -1,5 +1,6 @@
-package com.catnip.cateringlist.utils.rx
+package com.catnip.cospreadmap.utils.rx
 
+import com.catnip.cateringlist.utils.rx.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

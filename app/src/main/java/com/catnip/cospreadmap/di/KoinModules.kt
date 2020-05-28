@@ -1,7 +1,7 @@
 package com.catnip.cospreadmap.di
 
 import androidx.room.Room
-import com.catnip.cateringlist.utils.rx.AppScheduler
+import com.catnip.cospreadmap.utils.rx.AppScheduler
 import com.catnip.cospreadmap.data.db.AppDatabase
 import com.catnip.cospreadmap.data.db.datasource.GlobalSpreadRoomDataSource
 import com.catnip.cospreadmap.data.db.datasource.LocalSpreadRoomDataSource

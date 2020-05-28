@@ -1,10 +1,8 @@
 package com.catnip.cospreadmap.data.db.datasource
 
-import com.catnip.cateringlist.utils.rx.AppScheduler
 import com.catnip.cospreadmap.data.db.dao.LocalSpreadDao
 import com.catnip.cospreadmap.data.db.entity.LocalSpreadEntity
 import com.catnip.cospreadmap.data.model.spread.local.LocalDataWrapper
-import io.reactivex.Completable
 import io.reactivex.Observable
 import java.util.concurrent.ExecutorService
 

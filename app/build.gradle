@@ -82,7 +82,6 @@ dependencies {
     implementation deps.room.core
     implementation deps.room.roomRx
     implementation deps.coil.coil
-    implementation deps.mapbox.maps
     implementation deps.chart.mpandroidchart
     implementation deps.android_test.junit
     androidTestImplementation deps.android_test.androidJunit
