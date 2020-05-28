@@ -34,7 +34,7 @@ class LocalSpreadFragment : Fragment() {
                     Log.d(TAG, "On progress")
                 }
                 is ResultState.Success -> {
-                    Log.d(TAG, it.data.toString())
+
                 }
                 is ResultState.Error -> {
                     Log.d(TAG, "Error")
@@ -42,8 +42,6 @@ class LocalSpreadFragment : Fragment() {
             }
         })
         localSpreadViewModel.getData()
-
-
     }
 
 }
