@@ -12,10 +12,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.catnip.cateringlist.utils.result.ResultState
 import com.catnip.cospreadmap.R
-import com.catnip.cospreadmap.data.model.spread.local.LocalSpreadWrapper
 import com.catnip.cospreadmap.data.model.total.local.IndonesiaCount
 import com.catnip.cospreadmap.ui.adapter.LocalSpreadListAdapter
+import com.catnip.cospreadmap.utils.ext.fromFormattedToNumber
 import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import kotlinx.android.synthetic.main.fragment_local.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,7 +41,7 @@ class LocalSpreadFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupChart()
         listAdapter = LocalSpreadListAdapter {
             Toast.makeText(context, it.province.name, Toast.LENGTH_SHORT).show()
         }
@@ -55,6 +59,9 @@ class LocalSpreadFragment : Fragment() {
                 is ResultState.Success -> {
                     it.data.spreadData?.let { list ->
                         listAdapter.items = list
+                    }
+                    it.data.spreadCount?.let {spCount ->
+                        setChartData(spCount)
                     }
                 }
                 is ResultState.Error -> {
@@ -75,6 +82,9 @@ class LocalSpreadFragment : Fragment() {
             setEntryLabelColor(R.color.md_white_1000)
             setExtraOffsets(5f, 10f, 5F, 5F)
             setEntryLabelTextSize(12f)
+            holeRadius = 58F
+            transparentCircleRadius = 61F
+
         }
         val legend = chart_view?.legend
         legend?.apply {
@@ -87,8 +97,29 @@ class LocalSpreadFragment : Fragment() {
             yOffset = 0f
         }
     }
-    private fun setChartData(data : IndonesiaCount){
 
+    private fun setChartData(data: IndonesiaCount) {
+        val pos = data.positive?.fromFormattedToNumber()!!
+        val cur = data.cured?.fromFormattedToNumber()!!
+        val dth = data.death?.fromFormattedToNumber()!!
+
+        val pieEntries = arrayListOf<PieEntry>()
+        pieEntries.add(PieEntry(pos.toFloat(), "Positive"))
+        pieEntries.add(PieEntry(cur.toFloat(), "Cured"))
+        pieEntries.add(PieEntry(dth.toFloat(), "Death"))
+
+        val dataSet = PieDataSet(pieEntries, "Indonesia")
+        val colors = intArrayOf(R.color.md_red_500, R.color.md_green_500, R.color.md_grey_500)
+        dataSet.setColors(colors,context)
+        val data = PieData(dataSet)
+        chart_view?.let {
+            data.setValueFormatter(PercentFormatter(chart_view))
+        }
+        data.setValueTextSize(11f)
+        data.setValueTextColor(R.color.md_white_1000)
+        chart_view?.data = data
+        chart_view?.highlightValue(null)
+        chart_view?.invalidate()
     }
 
 
