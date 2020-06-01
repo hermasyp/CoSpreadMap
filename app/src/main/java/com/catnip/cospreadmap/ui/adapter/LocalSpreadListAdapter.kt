@@ -1,4 +1,4 @@
-package com.catnip.cospreadmap.ui.adapter;
+package com.catnip.cospreadmap.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -39,9 +39,9 @@ class LocalSpreadListAdapter(private val itemClick: (LocalSpreadWrapper) -> Unit
             with(item) {
                 itemView.setOnClickListener { itemClick(this) }
                 itemView.tv_province_name?.text = this.province.name
-                itemView.tv_positive_count?.text = this.localSpread?.positive
-                itemView.tv_cured_count?.text = this.localSpread?.cured
-                itemView.tv_death_count?.text = this.localSpread?.death
+                itemView.tv_positive_count?.text = this.localSpread?.positive.toString()
+                itemView.tv_cured_count?.text = this.localSpread?.cured.toString()
+                itemView.tv_death_count?.text = this.localSpread?.death.toString()
             }
 
         }
